@@ -116,25 +116,21 @@ public class DataRetriever {
 
         List<Object> params = new ArrayList<>();
 
-        // Filtre sur le nom du produit (ILIKE + %...%)
         if (productName != null && !productName.trim().isEmpty()) {
             sql.append(" AND p.name ILIKE ?");
             params.add("%" + productName.trim() + "%");
         }
 
-        // Filtre sur le nom de la catégorie (ILIKE + %...%)
         if (categoryName != null && !categoryName.trim().isEmpty()) {
             sql.append(" AND pc.name ILIKE ?");
             params.add("%" + categoryName.trim() + "%");
         }
 
-        // Filtre date min (créé après)
         if (creationMin != null) {
             sql.append(" AND p.creation_datetime >= ?");
             params.add(Timestamp.from(creationMin));
         }
 
-        // Filtre date max (créé avant)
         if (creationMax != null) {
             sql.append(" AND p.creation_datetime <= ?");
             params.add(Timestamp.from(creationMax));
@@ -148,7 +144,6 @@ public class DataRetriever {
         try (Connection conn = new DBConnection().getDBConnection();
              PreparedStatement ps = conn.prepareStatement(sql.toString())) {
 
-            // Injection des paramètres
             for (int i = 0; i < params.size(); i++) {
                 ps.setObject(i + 1, params.get(i));
             }
@@ -170,7 +165,6 @@ public class DataRetriever {
                         cat.setName(rs.getString("cat_name"));
                         p.setCategory(cat);
                     }
-
                     products.add(p);
                 }
             }

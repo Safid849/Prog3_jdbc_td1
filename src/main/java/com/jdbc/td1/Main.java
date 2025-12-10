@@ -13,9 +13,6 @@ public class Main {
 
         DataRetriever dr = new DataRetriever();
 
-        // -------------------------------------------------------------------
-        //  TEST 1 : getAllCategories()
-        // -------------------------------------------------------------------
         System.out.println("====================================================");
         System.out.println("TEST 1 : List<Category> getAllCategories()");
         System.out.println("→ Retourne toutes les catégories");
@@ -26,11 +23,6 @@ public class Main {
         List<Category> categories = dr.getAllCategories();
         categories.forEach(System.out::println);
 
-
-
-        // -------------------------------------------------------------------
-        //  TEST 2 : getProductList(page, size)
-        // -------------------------------------------------------------------
         System.out.println("\n====================================================");
         System.out.println("TEST 2 : List<Product> getProductList(page=1, size=3)");
         System.out.println("→ Doit retourner les 3 premiers produits");
@@ -91,11 +83,6 @@ public class Main {
         );
         filtered2.forEach(System.out::println);
 
-
-
-        // -------------------------------------------------------------------
-        //  TEST 4 : getProductsByCriteria (avec pagination)
-        // -------------------------------------------------------------------
         System.out.println("\n====================================================");
         System.out.println("TEST 4 : getProductsByCriteria(name=\"a\", page=1, size=2)");
         System.out.println("→ Filtrer d’abord puis paginer (obligatoire)");
